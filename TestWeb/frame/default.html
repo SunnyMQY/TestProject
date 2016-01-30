@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/default.css" rel="stylesheet" />
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="js/base.js"></script>
+    <script>
+        $(function () {
+            $(".content").hide();
+            $(".menu h3").click(function () {
+                var $this = $(this), $span = $this.find("span").eq(0);
+                $span.text(($span.text() === "▼" ? "▲" : "▼"));
+                $this.next().slideToggle();
+            });
+            $(".menu a").click(function () {
+                var $this = $(this), thisId = this.id, $contentFrame,
+                    $tab = $(String.format(".tab .{0}", thisId)),
+                    tabTmpl, $frameContainer;
+                if ($tab.length === 0) {
+                    tabTmpl = '<li data-id="{0}" class="{0}">{1}<a>×</a></li>';
+                    $tab = $(tabTmpl.format(thisId, $this.text()));
+                    $tab.click(function () { tabClick(this); });
+                    $tab.find("a").click(function () { tabCloseClick(this); });
+                    $(".tab").append($tab);
+                    $frameContainer = $(".content");
+                    if (!$frameContainer.visible) {
+                        $frameContainer.show();
+                        $("#content-frame").height($("#content-frame").parent().height());
+                    }
+                }
+                $tab.click();
+                return false;
+            });
+            $("#editor").click();
+        });
+        function tabClick(sender) {
+            var $this = $(sender), $selected;
+            if ($this.attr("class").indexOf("tab-active") === -1) {
+                $("#content-frame").attr("src", $(("#" + $this.attr("data-id"))).attr("href"));
+                $selected = $(".tab .tab-active").removeClass("tab-active");
+                $this.addClass("tab-active");
+            }
+        }
+        function tabCloseClick(sender) {
+            var $this = $(sender).closest("li"), $next, $prev;
+            if ($this.attr("class").indexOf("tab-active") >= 0) {
+                $next = $this.next();
+                if ($next.length > 0) $next.click();
+                else {
+                    $prev = $this.prev();
+                    if ($prev.length > 0) $prev.click();
+                    else $(".content").hide();
+                }
+            }
+            $this.remove();
+        }
+    </script>
+</head>
+<body>
+    <div class="root flex-v">
+        <header class="banner"></header>
+        <content class="flex-max flex-h">
+            <menu class="menu flex-v">
+                <menuitem>
+                    <h3><span>▼</span>A</h3>
+                    <menu class="flex-v">
+                        <menuitem><a id="editor" href="editor.html">表单元素</a></menuitem>
+                        <menuitem><a id="tab2" href="tab2.html">A2</a></menuitem>
+                        <menuitem><a id="tab3" href="tab3.html">A3</a></menuitem>
+                        <menuitem><a id="dialog1" href="dialog1.html">A4</a></menuitem>
+                    </menu>
+                </menuitem>
+                <menuitem><a id="dialog2" href="dialog2.html">B</a></menuitem>
+                <menuitem><a>C</a></menuitem>
+                <menuitem><a>D</a></menuitem>
+            </menu>
+            <content class="flex-v flex-max">
+                <content class="main-content flex-v flex-max">
+                    <ul class="tab flex-h">
+                        <!--<li class="tab-active">nav1<a>×</a></li>
+                        <li>nav1<a>×</a></li>
+                        <li>nav1<a>×</a></li>-->
+                    </ul>
+                    <content class="content flex-max">
+                        <iframe id="content-frame"></iframe>
+                    </content>
+                </content>
+            </content>
+        </content>
+        <footer class="footer"></footer>
+    </div>
+</body>
+</html>

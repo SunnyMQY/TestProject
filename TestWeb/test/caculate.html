@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>数值运算测试</title>
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../frame/js/base.js"></script>
+    <script>
+        $(function () {
+            var $plus = $(".plus-result"), $minus = $(".minus-result"),
+                $times = $(".times-result"), $devide = $(".devide-result"),
+                values = [
+                    { num1: 5, num2: 6 },
+                    { num1: " 5", num2: "6" },
+                    { num1: "5", num2: "6" },
+                    { num1: "5", num2: 6 },
+                    { num1: 5, num2: "6" },
+                    { num1: 0.2, num2: 0.6 },
+                    { num1: 0.8, num2: 0.6 },
+                    { num1: 0.8, num2: null },
+                    { num1: null, num2: 0.6 },
+                    { num1: null, num2: null },
+                    { num1: void 0, num2: void 0 },
+                    { num1: 5.2, num2: 5.6 },
+                    { num1: void 0, num2: 5.6 },
+                    { num1: 0.34, num2: 0.67 },
+                    { num1: 101, num2: void 0 },
+                    { num1: 0.89, num2: 0.67 },
+                    { num1: "0.89", num2: 0.67 },
+                    { num1: 0.89, num2: "0.67" },
+                    { num1: "0.89", num2: "0.67" },
+                    { num1: 21, num2: 0 }
+                ], template = "{0}{1}{2}={3}<br/>";
+            values.forEach(function (item) {
+                $plus.append(template.format(item.num1, "+", item.num2, plus(item.num1, item.num2)));
+                $minus.append(template.format(item.num1, "-", item.num2, minus(item.num1, item.num2)));
+                $times.append(template.format(item.num1, "*", item.num2, times(item.num1, item.num2)));
+                $devide.append(template.format(item.num1, "/", item.num2, devide(item.num1, item.num2)));
+            });
+        });
+    </script>
+    <style type="text/css">
+        .result { display: flex; display: flexbox; flex-direction: row; }
+        .result div { flex: 1; -ms-flex: 1; margin: 0 10px; }
+        .result div:nth-child(2n+1) { background: #ccc; }
+        .result div:nth-child(2n) { background: #fdc; }
+    </style>
+</head>
+<body>
+    <div class="result">
+        <div class="plus-result"></div>
+        <div class="minus-result"></div>
+        <div class="times-result"></div>
+        <div class="devide-result"></div>
+    </div>
+</body>
+</html>

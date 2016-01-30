@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../js/jquery-ui.css" rel="stylesheet" />
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/arrayHelper.js"></script>
+    <script src="../js/combo.min.js"></script>
+    <style type="text/css">
+        div, ul, li { margin: 0; padding: 0; }
+        ul, li { list-style: none; }
+        .bsy-combo { display: flex; display: flexbox; -ms-flex-direction: row; flex-direction: row; border: 1px solid #ccc; position: relative; height: 26px; }
+        .bsy-combo-text { -ms-flex: 1; flex: 1; height: 100%; outline: none; position: relative; }
+        .bsy-combo input[type=text] { width: 100%; height: 100%; margin: 0; padding: 0; outline: none; border: none; }
+        .bsy-combo-btn { width: 20px; height: 100%; outline: none; }
+        .bsy-combo-btn input[type=button] { padding: 0; margin: 0; height: 100%; width: 20px; border: none; cursor: pointer; font-size: 16px; outline: none; background: none; color: #555; }
+        .bsy-combo-list { position: absolute; width: 100%; left: 0; overflow-x: hidden; overflow-y: auto; max-height: 350px; }
+        .bsy-combo-list ul { width: 100%; -ms-flex-direction: column; flex-direction: column; border: 1px solid #ccc; border-top: none; display: none; min-height: 5px; border-collapse: collapse; }
+        .bsy-combo-item { height: 23px; line-height: 23px; display: table-row; width: 100%; }
+        .bsy-combo-item:hover { background: #ddd; }
+        .bsy-combo-item.combo-selecting { background: #ddd; }
+        .combo-clear-select { width: 16px; height: 16px; border-radius: 8px; position: absolute; right: 2px; top: 4px; background: #ccc; font-weight: bold; font-size: 16px; display: none; cursor: pointer; }
+        .combo-item-col { display: table-cell; }
+        .bsy-combo-select-col { width: 25px; text-align: center; }
+        .bsy-combo-select-col input { width: 16px; height: 16px; vertical-align: middle; }
+        .bsy-combo-header { text-align: center; font-weight: bold; background: #eee; width: 100%; display: table-row; line-height: 26px; }
+    </style>
+    <script>
+        $(function () {
+            var reg = /\{\{(\w+)\}\}/.exec("<a>{{Name}}</a>");
+            //$("body").append("<a>{{Name}}</a>".replace(reg[0], reg[1]));
+            //$("body").append(ss);
+
+            $("#ddl").bsyCombo({
+                dataSource: [                               //下拉列表数据源
+                    { Name: "Auto", Value: "a" },
+                     { Name: "Big", Value: "b" },
+                     { Name: "Combo", Value: "c" },
+                    { Name: "Debug", Value: "d" }
+                ],
+                width: 400,                                 //宽度，不填默认占满父容器
+                showUnderLine: true,                        //是否只显示下划线
+                showHeader: true,                           //列表数据是否显示表头
+                mutiSelect: true,                           //是否允许多选
+                disable: false,                             //是否禁用
+                filterKeys: "Name,Value",                   //过滤字段，多个以逗号分隔
+                //selectedItems: [{ id: 1, index: 0 }],       //默认选中项
+                textKey: "Name",                            //显示Key，必须
+                cols: [                                     //列定义，必须
+                    { header: "地区", key: "{{Name}}-{{Value}}" },
+                    { header: "区号", key: "Value" }
+                ],
+                primaryKey: "Value",                        //主键，必须
+            });
+            //重置数据源
+            $("#ddl").bsyCombo("resetDataSource", [
+                { Name: "北京", Value: "010" },
+                { Name: "上海", Value: "021" },
+                { Name: "天津", Value: "012" },
+                { Name: "河南", Value: "0371" }
+            ]);
+            //设置选中项
+            //$("#ddl").bsyCombo("setSelectedItems", [{ id: "0371" }, { index: 1 }]);
+            //获取选中项
+            $("#ddl").bsyCombo("getSelectedItems");
+            //禁用(trye)|启用(false)
+            //$("#ddl").bsyCombo("setDisabled", true);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" id="ddl" />
+    </div>
+</body>
+</html>

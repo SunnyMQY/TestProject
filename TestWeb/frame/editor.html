@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/base.css" rel="stylesheet" />
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="/js/jquery-ui-1.8.20.min.js"></script>
+    <script src="/js/jquery.ui.core.min.js"></script>
+    <script src="/js/jquery.ui.widget.min.js"></script>>
+    <script src="js/base.js"></script>
+    <script src="js/jquery.fn.ext.js"></script>
+    <script src="/js/combo.js"></script>
+    <style type="text/css">
+        .form { padding: 10px; }
+        .table { display: table; border-collapse: collapse; }
+        .table ul { display: table-row; }
+        .table li { display: table-cell; }
+        .th { display: table-column; }
+        .input-title { width: 90px; text-align: right; }
+        .input-content { width: 200px; }
+        .txt { width: 160px; border: none; border-bottom: 1px solid #ccc; height: 24px; }
+        .radio-label { margin: 0 20px 0 10px; }
+        .require-validate { position: relative; }
+        .error-msg { color: #666; position: absolute; outline: none; background: #f00; right: 0; line-height: 20px; }
+        .operators { height: 38px; line-height: 38px; flex-basis: initial; padding: 0 10px; }
+        .operators div { display: inline-block; height: 38px; }
+        .operators input { height: 24px; padding: 0 10px 0 25px; border: 1px solid #ccc; background-position: 4px center; background-size: 17px 14px; }
+        .left-operators { float: left; }
+        .right-operators { float: right; }
+        .left-operators input:not(:first-child) { margin-left: 10px; }
+        .right-operators input:not(:last-child) { margin-right: 10px; }
+        .btn-resfrsh { background: url(../images/collapse.png) no-repeat; }
+
+
+
+
+        .mpp-combo { display: flex; display: flexbox; -ms-flex-direction: row; flex-direction: row; border: 1px solid #ccc; position: relative; height: 26px; }
+        .mpp-combo-text { -ms-flex: 1; flex: 1; height: 100%; outline: none; position: relative; }
+        .mpp-combo input[type=text] { width: 100%; height: 100%; margin: 0; padding: 0; outline: none; border: none; }
+        .mpp-combo-btn { width: 20px; height: 100%; outline: none; }
+        .mpp-combo-btn input[type=button] { padding: 0; margin: 0; height: 100%; width: 20px; border: none; cursor: pointer; font-size: 16px; outline: none; background: none; color: #555; }
+        .mpp-combo-list { position: absolute; width: 100%; left: 0; overflow-x: hidden; overflow-y: auto; max-height: 350px; }
+        .mpp-combo-list ul { width: 100%; -ms-flex-direction: column; flex-direction: column; border: 1px solid #ccc; border-top: none; display: none; min-height: 5px; border-collapse: collapse; }
+        .mpp-combo-item { height: 23px; line-height: 23px; display: table-row; width: 100%; }
+        .mpp-combo-item:hover { background: #ddd; }
+        .mpp-combo-item.combo-selecting { background: #ddd; }
+        .mpp-combo-clear-select { width: 16px; height: 16px; border-radius: 8px; position: absolute; right: 2px; top: 4px; background: #ccc; font-weight: bold; font-size: 16px; display: none; cursor: pointer; }
+        .mpp-combo-item-col { display: table-cell; }
+        .mpp-combo-select-col { width: 25px; text-align: center; }
+        .mpp-combo-select-col input { width: 16px; height: 16px; vertical-align: middle; }
+        .mpp-combo-header { text-align: center; font-weight: bold; background: #eee; width: 100%; display: table-row; line-height: 26px; }
+    </style>
+    <script>
+        $(function () {
+            var $container = $("div:last");
+            $container.append("{0}==>{1} <br/>".format("-6.666", "-6.666".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("6.999", "6.999".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("-6.999", "-6.999".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("-111", "-111".formatMoney(6)));
+            $container.append("{0}==>{1} <br/>".format("-2222.0", "-2222.0".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("2222.0", "2222.0".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("2222.000000", "2222.000000".formatMoney(6)));
+            $container.append("{0}==>{1} <br/>".format("2222.000", "2222.000".formatMoney(6)));
+            $container.append("{0}==>{1} <br/>".format("33333.1", "33333.1".formatMoney(6)));
+            $container.append("{0}==>{1} <br/>".format("444444.44", "444444.44".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("5555555.55", "5555555.55".formatMoney(6)));
+            $container.append("{0}==>{1} <br/>".format("66666666.666", "66666666.666".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("-33333.1", "-33333.1".formatMoney(6)));
+            $container.append("{0}==>{1} <br/>".format("-444444.44", "-444444.44".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("-5555555.55", "-5555555.55".formatMoney(6)));
+            $container.append("{0}==>{1} <br/>".format("-66666666.666", "-66666666.666".formatMoney()));
+            $container.append("{0}==>{1} <br/>".format("-77.444", "-77.444".formatMoney(6)));
+
+            //$container.append("{0}年{1}月{2}日 <br/>".format(new Date("2015-12-3").getFullYear(),
+            //    new Date("2015-12-3").getMonth() + 1,
+            //    new Date("2015-12-3").getDate()));
+
+            //$container.append(("".formatDate() + "<br/>"))
+            //    .append(("1234347".formatDate() + "<br/>"))
+            //    .append("2013-12-3".formatDate("yyyy-MM-dd hh:mm:ss") + "<br/>");
+
+
+            $(":button").click(function () {
+                $("#txtUserName").validate([{
+                    error: "请输入姓名！", validator: function (value, sender) {
+                        return value;
+                    }
+                }]);
+            });
+
+            $("#ddlSupplier").mppCombo({
+                textKey: "Name",
+                primaryKey: "Value",
+                cols: [{ header: "", key: "Name" }],
+                showUnderLine: true,
+                dataSource: [
+                    { Name: "auto", Value: "A" },
+                    { Name: "but", Value: "b" },
+                    { Name: "copy", Value: "c" },
+                    { Name: "debug", Value: "d" }
+                ]
+            });
+            var arr = [
+                 { Name: "auto", Value: "A" },
+                 { Name: "but", Value: "b" },
+                 { Name: "copy", Value: "c" },
+                 { Name: "debug", Value: "d" }
+            ];
+            alert(arr.getItemIndex(function (item, index) {
+                return item.Value == "b";
+            }));
+
+        });
+    </script>
+</head>
+<body>
+    <div class="root flex-v">
+        <div class="operators">
+            <div class="left-operators">
+                <input type="button" class="btn-resfrsh" value="刷新" />
+                <input type="button" class="btn-resfrsh" value="添加单据" />
+                <input type="button" class="btn-resfrsh" value="返回" />
+            </div>
+            <div class="right-operators">
+                <input type="button" class="btn-resfrsh" value="审核" />
+                <input type="button" class="btn-resfrsh" value="提交" />
+                <input type="button" class="btn-resfrsh" value="删除" />
+            </div>
+        </div>
+        <content class="form flex-v flex-max">
+            <div class="flex-h">
+                <div class="table">
+                    <ul>
+                        <li class="input-title">姓名：</li>
+                        <li class="require-validate">
+                            <input type="text" id="txtUserName" class="txt" placeholder="请输入姓名！" />
+                        </li>
+                        <li class="input-title">性别：</li>
+                        <li>
+                            <label class="radio-label"><input type="radio" name="sex" value="male" />男</label>
+                            <label><input type="radio" name="sex" value="female" />女</label>
+                        </li>
+                        <li class="input-title">金额：</li>
+                        <li>
+                            <input type="text" id="txtMoney" class="txt" placeholder="金额！" />
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="input-title">供应商：</li>
+                        <li><input type="text" id="ddlSupplier" /></li>
+                        <li class="input-title">日期：</li>
+                        <li><input type="text" id="txtDate" /></li>
+                        <li class="input-title">日期时间：</li>
+                        <li><input type="text" id="txtDateTime" /></li>
+                    </ul>
+                    <ul>
+                        <li class="input-title"></li>
+                        <li></li>
+                        <li class="input-title"></li>
+                        <li></li>
+                        <li class="input-title"></li>
+                        <li></li>
+                    </ul>
+                    <ul>
+                        <li class="input-title"></li>
+                        <li></li>
+                        <li class="input-title"></li>
+                        <li></li>
+                        <li class="input-title"></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <input type="button" value="保存" />
+            </div>
+        </content>
+    </div>
+</body>
+</html>

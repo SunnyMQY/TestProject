@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        body,ul,li,.container{margin:0;padding:0;}
+        .horizontal{display:flex;}
+        .horizontal li{float:left;height:60px;list-style:none;}
+        .horizontal li:nth-child(2n+1) {background:#00ffff;flex:2;-webkit-box-flex:2;-ms-flex:2;}
+        .horizontal li:nth-child(2n) {background:#ffd800;flex:1;-webkit-box-flex:2;-ms-flex:1;}
+        .vertical{display:flex;flex-direction:column; height:400px;}
+        .vertical li:nth-child(2n+1){flex:2;background:#0094ff;}
+        .vertical li:nth-child(2n){flex:1;background:#ff6a00;}
+
+        .vertical-test{display:flex;flex-direction:column;height:800px;margin-top:100px;}
+        .vertical-test li:last-child{flex:1;background:#00ffff;}
+        .vertical-test li:nth-child(2n+1){background:#ffd800;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="horizontal">
+            <li></li>
+            <li></li>
+            <li style="width:100px;"></li>
+            <li></li>
+        </ul>
+        <ul class="vertical">
+            <li></li>
+            <li style="height:50px;"></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <ul class="vertical-test">
+            <li>
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+            </li>
+            <li>
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+            </li>
+            <li>
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+            </li>
+            <li>
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+                asdfadf<br />
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

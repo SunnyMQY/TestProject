@@ -1,0 +1,11 @@
+﻿html, body, .root { height: 100%; width: 100%; font-size: 12px; font-family: 'Microsoft YaHei'; overflow: hidden; }
+body, div, ul, li, table, tr, td, th, menu, h1, h2, h3, h4, h5, h6, input { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+ul, li { list-style: none; }
+table { border-collapse: collapse; }
+td, th { border: solid 1px #ddd; }
+input:focus{outline:none;}
+.root { background: #eee; }
+.flex-v { display: flex; display: flexbox; flex-direction: column; }
+.flex-h { display: flex; display: flexbox; flex-direction: row; }
+.flex-max { flex: 99; -ms-flex: 99; }

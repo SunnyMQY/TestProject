@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style type="text/css">
+        body, select, input, table {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        .content {
+            width: 996px;
+            margin: 0 auto;
+            border-right: solid 1px #666;
+            border-left: solid 1px #666;
+            border-bottom: solid 1px #666;
+        }
+
+        .header {
+            height: 30px;
+            text-align: right;
+            margin: 0 10px 0 0;
+            font-size: 14px;
+            line-height: 30px;
+            font-weight: normal;
+        }
+
+        .operations {
+            height: 45px;
+            padding: 0 15px;
+            border-bottom: solid 1px #666;
+            border-top: solid 1px #666;
+        }
+
+            .operations input {
+                height: 28px;
+                padding: 0 10px;
+                border: solid 1px #666;
+                margin-top: 8px;
+            }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .data {
+            margin: 3px 2px;
+            width: 992px;
+        }
+
+            .data td {
+                border: solid 1px #666;
+                text-align: center;
+                margin: 0;
+            }
+
+            .data thead td {
+                padding: 10px 0;
+            }
+
+            .data tbody td {
+                padding: 10px 0;
+            }
+
+        .details {
+            margin-top: 50px;
+        }
+
+        .tab {
+            float: left;
+            height: 20px;
+            width: 100%;
+        }
+
+            .tab span, .tab hr {
+                display: inline-block;
+            }
+
+            .tab span {
+                width: 60px;
+                text-align: center;
+                float: left;
+                line-height: 20px;
+            }
+
+            .tab hr {
+                width: 930px;
+                margin-top: 11px;
+                float: left;
+            }
+
+        .clear {
+            clear: both;
+            width: 0;
+            height: 0;
+            font-size: 1px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .td-title {
+            text-align: right;
+            width: 90px;
+        }
+
+        .details table {
+            width: 100%;
+        }
+
+        .details td {
+            padding: 8px 0;
+        }
+
+        .td-content {
+            width: 222px;
+        }
+
+        .details input, .details select {
+            width: 160px;
+            height: 24px;
+        }
+
+        #is-can-order {
+            width: 16px;
+            height: 16px;
+        }
+
+        .details label {
+            margin-left: 30px;
+            float: left;
+        }
+
+        .is-can-order-title, #is-can-order {
+            display: inline-block;
+            float: left;
+        }
+
+        .is-can-order-title {
+            height: 16px;
+            line-height: 18px;
+        }
+
+        .form-operations {
+            margin: 30px;
+            padding-left: 330px;
+        }
+
+            .form-operations input {
+                width: 60px;
+                height: 30px;
+                margin-left: 50px;
+            }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h5 class="header">xxx花园路店</h5>
+        <div class="operations">
+            <input type="button" value="新增餐台" />
+        </div>
+        <table class="data" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <td>餐台号</td>
+                    <td>餐台名</td>
+                    <td>店名</td>
+                    <td>楼层</td>
+                    <td>餐台类型</td>
+                    <td>餐台人数</td>
+                    <td>最大载客数</td>
+                    <td>最小载客数</td>
+                    <td>最低消费</td>
+                    <td>服务员</td>
+                    <td>所在区域</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>1号座</td>
+                    <td>XXX花园路店</td>
+                    <td>一楼</td>
+                    <td>大厅</td>
+                    <td>6</td>
+                    <td>8</td>
+                    <td>4</td>
+                    <td>0.00</td>
+                    <td>小李</td>
+                    <td>靠窗</td>
+                    <td>
+                        <input type="button" value="删除" />
+                        <input type="button" value="编辑" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="details">
+            <div class="tab">
+                <span>餐台信息</span>
+                <hr />
+            </div>
+            <table>
+                <tr>
+                    <td class="td-title">餐台类型：</td>
+                    <td class="td-content">
+                        <select>
+                            <option>大厅</option>
+                        </select>
+                    </td>
+                    <td class="td-title">餐台就餐人数：</td>
+                    <td class="td-content">
+                        <input type="text" />
+                    </td>
+                    <td class="td-title">服务生：</td>
+                    <td class="td-content">
+                        <select>
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-title">餐台号：</td>
+                    <td class="td-content">
+                        <input type="text" />
+                    </td>
+                    <td class="td-title">最少就餐人数：</td>
+                    <td class="td-content">
+                        <input type="text" />
+                    </td>
+                    <td class="td-title">所在区域：</td>
+                    <td class="td-content">
+                        <select>
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-title">餐台名称：</td>
+                    <td class="td-content">
+                        <select>
+                            <option>大厅</option>
+                        </select>
+                    </td>
+                    <td class="td-title">餐最多餐人数：</td>
+                    <td class="td-content">
+                        <input type="text" />
+                    </td>
+                    <td class="td-title">最低消费：</td>
+                    <td class="td-content">
+                        <select>
+                            <option></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        <label>
+                            <input id="is-can-order" type="checkbox" /><span class="is-can-order-title">是否可预定</span>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-operations">
+                <input type="button" value="保存" />
+                <input type="button" value="取消" />
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div id="main" style="background: #ffdd00; height: 30px;">
+        ddd
+    </div>
+</body>
+</html>
+<script>
+    //var foo = "x";
+    //if (true) var foo = "xxx";
+    //alert(foo);
+    //function test() {
+    //    var foo = "old";
+    //    this.foo = foo;
+    //}
+    //test();
+    //alert(foo);
+    //var x = new test();
+    //alert(x.foo);
+    ////alert(x);
+
+
+    //(function () {
+    //    if (amount.indexOf(",") < 0) amount = amount.replace(/(\d{3})$/, ",$1");
+    //    else if (amount.indexOf(",") > 3) amount = amount.replace(/(\d{3}),/, ",$1,");
+    //    if (amount.indexOf(",") > 3) arguments.callee(amount);
+    //})();
+
+
+    //function format(amount) {
+    //    if (amount.indexOf(",") < 0) amount = amount.replace(/(\d{3})$/, ",$1");
+    //    else if (amount.indexOf(",") > 3) amount = amount.replace(/(\d{3}),/, ",$1,");
+    //    if (amount.indexOf(",") > 3) return arguments.callee(amount);
+    //    else return amount;
+    //}
+
+    function format(decimals, precision) {
+        precision = precision || 2;
+        precision = precision < 0 ? 2 : precision;
+        if (decimals.length == precision) return decimals;
+        if (decimals.length < precision) {
+            decimals = "0" + decimals;
+            if (decimals.length < precision) return arguments.callee(decimals, precision);
+            else return decimals;
+        } else {
+            return (decimals.substr(0, precision) - 0) + ((decimals.substr(precision, 1) - 0) > 4 ? 1 : 0);
+        }
+    }
+
+
+    var amount = "";
+    alert(format(amount, 6));
+
+
+
+
+
+    var obj = document.getElementById("main");
+    var items = ["click", "keypress"];
+    for (var i = 0; i < items.length; i++) {
+        (function () {
+            var item = items[i];
+            obj["on" + item] = function () {
+                alert("Thanks for your " + item);
+            };
+        })();
+    }
+</script>

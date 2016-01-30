@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        html, body, .root {
+            height: 100%;
+            width: 100%;
+            font-size: 12px;
+            font-family: 'Microsoft YaHei';
+            overflow: hidden;
+        }
+
+        body, div, ul, li, table, tr, td, th {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            float: left;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        .menu li {
+            margin-left: 15px;
+            line-height: 30px;
+        }
+
+        .menu a {
+            border-bottom: solid 1px #ccc;
+            display: block;
+            cursor: pointer;
+        }
+
+            .menu a:hover {
+                background-color: antiquewhite;
+            }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: solid 1px #ddd;
+        }
+
+        .root {
+            float: left;
+            background-color: #eee;
+        }
+
+        .container {
+            float: left;
+            width: 100%;
+        }
+
+        .menu {
+            border: solid 1px #ccc;
+            width: 200px;
+            float: left;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .content {
+            float: left;
+        }
+
+        .header {
+            width: 100%;
+            float: left;
+            height: 120px;
+        }
+
+        #main_frame {
+            border: none;
+            width: 100%;
+        }
+
+        #tab {
+            height: 35px;
+            margin-left: 10px;
+            z-index: 10;
+        }
+
+            #tab .tab_selected {
+                border-bottom: solid 1px #eee;
+            }
+
+            #tab li {
+                display: inline-block;
+                width: auto;
+                line-height: 34px;
+                border: solid 1px #ccc;
+                padding: 0 10px;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                position: relative;
+                margin-left: 6px;
+            }
+
+                #tab li:not(.tab_selected):hover {
+                    background: #fff;
+                }
+
+        .flag_expanded, .flag_folded {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .menu_folded {
+            display: none;
+        }
+
+        .menu_expanded {
+            display: block;
+        }
+
+        .tab_close {
+            display: inline-block;
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #ccc;
+            right: -8px;
+            top: -8px;
+            border: solid 1px #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            line-height: 12px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+            .tab_close:hover {
+                background: #eee;
+            }
+
+        .frame_container {
+            border: solid 1px #ccc;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            margin: 0 10px;
+        }
+
+        .footer {
+            float: left;
+            height: 30px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="root">
+        <div class="header"></div>
+        <div class="container">
+            <ul class="menu">
+                <li>
+                    <a><span class="flag_expanded">▼</span>A</a>
+                    <ul class="menu_expanded">
+                        <li>
+                            <a><span class="flag_expanded">▼</span>A1</a>
+                            <ul class="menu_expanded">
+                                <li>
+                                    <a><span class="flag_expanded">▼</span>A1</a>
+                                    <ul class="menu_expanded">
+                                        <li><a name="tab1" href="tab1.html">A1</a></li>
+                                        <li><a name="tab2" href="tab2.html">A2</a></li>
+                                        <li><a name="tab3" href="tab3.html">A3</a></li>
+                                    </ul>
+                                </li>
+                                <li><a>A2</a></li>
+                                <li><a>A3</a></li>
+                            </ul>
+                        </li>
+                        <li><a>A2</a></li>
+                        <li><a>A3</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="flag_folded">▲</span>B</a>
+                    <ul class="menu_folded">
+                        <li><a>B1</a></li>
+                        <li><a>B2</a></li>
+                        <li><a>B3</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="content">
+                <ul id="tab">
+                    <li name="tab1" class="tab_selected"><a>tab1</a><a class="tab_close">×</a></li>
+                    <li name="tab2"><a>tab2</a><a class="tab_close">×</a></li>
+                    <li name="tab3"><a>tab3</a><a class="tab_close">×</a></li>
+                </ul>
+                <div class="frame_container">
+                    <iframe id="main_frame" scrolling="no" src="tab1.html"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script>
+    var bannerHeight = 120,
+        menuWidth = 200,
+        menuSumBorder = 2,
+        footerHeight = 30,
+        navHeight = 35,
+        navBorderSumHeight = 2;
+    function initPage() {
+        var $body = $("body"), width = $body.width(), height = $body.height();
+        $(".container,.content").height((height - bannerHeight - footerHeight));
+        $(".content").width((width - menuWidth - menuSumBorder));
+        $(".frame_container,#main_frame").height(height - bannerHeight - navHeight - footerHeight - navBorderSumHeight);
+        $(".menu").height((height - bannerHeight - footerHeight - menuSumBorder));
+    }
+    $(function () {
+        initPage();
+        $(".menu li:has(ul) a").click(function () {
+            var $this = $(this), $span = $this.children("span").eq(0);
+            $span.text(($span.text() === "▼" ? "▲" : "▼"));
+            $(this).next("ul").slideToggle();
+            $("#main_frame")[0].contentWindow.postMessage("First:Hello Tab1; I'm Index!", "http://localhost:65458");
+            window.frames[0].postMessage("I'm Index Page!", "http://localhost:65458");
+        });
+        $(".menu a:not(span)").click(function () {
+            var $this = $(this), $tab, $frameContainer;
+            if ($this.has("span").length === 0) {
+                alert($this.text());
+                $tab = $("<li name='" + $this.attr("name") + "'><a>" + $this.text() + "</a><a class='tab_close'>×</a></li>");
+                $tab.click(function () { tabLiClick(this); });
+                $tab.find(".tab_close").click(function () { tabCloseClick(this); });
+                $("#tab").append($tab);
+                $tab.click();
+                $frameContainer = $(".frame_container");
+                if (!$frameContainer.visible) $frameContainer.show();
+                return false;
+            }
+        });
+        $("#tab li").click(function () { tabLiClick(this); });
+        $("#tab .tab_close").click(function () { tabCloseClick(this); });
+        function tabLiClick(sender) {
+            var $this = $(sender), $selected;
+            if ($this.attr("class") !== "tab_selected") {
+                main_frame.src = $this.attr("name") + ".html";
+                $selected = $("#tab .tab_selected");
+                if ($selected.length > 0) $selected.removeClass("tab_selected");
+                $this.addClass("tab_selected");
+            }
+        }
+        function tabCloseClick(sender) {
+            var $this = $(sender).closest("li"), $next, $prev;
+            if ($this.attr("class") === "tab_selected") {
+                $next = $this.next();
+                if ($next.length > 0) {
+                    $next.click();
+                } else {
+                    $prev = $this.prev();
+                    if ($prev.length > 0) {
+                        $prev.click();
+                    } else {
+                        $(".frame_container").hide();
+                    }
+                }
+            }
+            $this.remove();
+        }
+    });
+    $(window).resize(function () { initPage(); });
+    window.addEventListener("message", function (event) {
+        alert("index");
+        alert("index:" + event.data);
+    });
+</script>

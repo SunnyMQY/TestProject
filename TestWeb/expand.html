@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style type="text/css">
+        html,body{height:100%;width:100%;}
+        body{margin:0;}
+        .content{width:1000px;margin:0 auto;background:#eee;height:100%;}
+        .active_bar{width:260px;height:500px;margin-top:100px;background:#ccc;float:right;}
+        .action{margin-left:-30px;width:30px;height:30px;background:#fd0;display:inline-block;}
+        .action span{display:inline-block;width:17px;height:14px;margin:8px 6.5px;}
+        .expand{background:url(images/expand.png);}
+        .collapse{background:url(images/collapse.png);}
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="active_bar">
+            <a class="action">
+                <span class="collapse"></span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+<script src="js/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".action").click(function () {
+            var $span = $(this).find("span"),
+                actionType = $span.attr("class"),
+                actionClass = (actionType == "expand" ? "collapse" : "expand"),
+                barWidth = (actionType == "expand" ? 260 : 0);
+            $(".active_bar").width(barWidth);
+            $span.attr("class", actionClass);
+        });
+    });
+</script>
