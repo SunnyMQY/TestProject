@@ -8,6 +8,7 @@
         /// <param name="cacul" type="function">运算算法函数</param>
         /// <returns type="decimal">返回浮点型运算结果</returns>
         if (num1 !== void 0 && num2 !== void 0) {
+            var $ = require('jquery');
             num1 = $.trim(num1 += '');
             num2 = $.trim(num2 += '');
             var numberPattern = /^-?\d+(.\d+)?$/,
